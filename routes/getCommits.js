@@ -24,8 +24,6 @@ module.exports = function (response, commitHash, repoPath, pageSize, page) {
                 logOptions,
                 { cwd: repoPath });
 
-            response.write("<div>commit list:</div></br>");
-
             getCommitsProcess.stdout.on('data', (data) => {
                 let str = `${data}`;
                 let dataArray = str.split("<step>");
