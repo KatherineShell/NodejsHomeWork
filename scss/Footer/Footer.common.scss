@@ -1,0 +1,38 @@
+@import '../main.common.scss'; 
+
+.Footer{
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    color: $dark-gray-text;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+.Footer_space-h_l{
+    padding-left: $indents-size-l;
+    padding-right: $indents-size-l;
+}
+
+.Footer_space-top_m{
+    padding-top: $indents-size-m;
+}
+
+.Section_border_top{
+    border-top: 1px solid $header-gray;
+}
+
+.Footer_space-bottom_s{
+    padding-bottom: $indents-size-s;
+}
+
+.Footer-Text{
+    box-sizing: border-box;
+    font-size: 13px;
+    line-height: $line-spacing-s;
+}
+
+.Footer_space-top{
+
+}

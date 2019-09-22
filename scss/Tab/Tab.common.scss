@@ -1,0 +1,23 @@
+@import '../main.common.scss'; 
+
+.Tab{
+    margin-left: $indents-size-sx;
+    margin-right: $indents-size-sx;
+    text-transform: uppercase;
+}
+
+.Tab:first-child{
+    margin-left:0;
+}
+
+.Tab:last-child{
+    margin-right:0;
+}
+
+.Tab-Title{
+    padding-bottom: 10px;
+}
+
+.Tab-Title_active{
+    padding-bottom: 8px;
+}

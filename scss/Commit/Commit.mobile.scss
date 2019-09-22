@@ -1,0 +1,25 @@
+.Commit-Header{
+    flex-direction: column;
+}
+
+.Commil-Scroll{
+    display: none;
+}
+
+.Commit-Panel{
+    grid-template-columns: 1fr;
+}
+
+.Commit-Header-Row{
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.Commit-Header-Clone{
+    width: 100%;
+    justify-content: space-between;
+}
+
+.Commit-Clone{
+    float: right;
+} 

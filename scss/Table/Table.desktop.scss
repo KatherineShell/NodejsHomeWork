@@ -1,0 +1,47 @@
+@import '../main.common.scss'; 
+
+.Table-Branch{
+    .Table-Header{
+        padding-top: 16px;
+        padding-bottom: 8px;
+        color: $table-header;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: repeat(1, auto);
+     }
+     .Table-Row{
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: repeat(1, auto);
+        padding-top: 16px;
+    }
+}
+
+.Table{
+
+    .Table-Header{
+       padding-top: 16px;
+       padding-bottom: 8px;
+       color: $table-header;
+       display: grid;
+       grid-template-columns: 2fr 2fr 3fr 1fr 2fr;
+       grid-template-rows: repeat(1, auto);
+    }
+    
+    .Table-Row{
+        grid-template-columns: 2fr 2fr 3fr 1fr 2fr;
+        grid-template-rows: repeat(1, auto);
+        padding-top: 16px;
+    }
+}
+
+.Table-Cell{
+    text-align: left;
+}
+
+.Table-Cell:last-child{
+    text-align: right;
+}
+
+.Table-Commiter::first-letter{
+    color: $warning;
+}

@@ -1,0 +1,53 @@
+$line-spacing-s: 18px;//
+$line-spacing-m: 20px;//
+$line-spacing-l: 24px;//
+$line-spacing-xl: 28px;//
+$line-spacing-xxl: 34px;
+
+$indents-size-xxxs: 2px;
+$indents-size-xxxs: 8px;//
+$indents-size-xxs: 10px;//
+$indents-size-xs: 12px;
+$indents-size-s: 14px;//
+$indents-size-sx: 16px;//
+$indents-size-m: 18px;//
+$indents-size-l: 20px;//
+$indents-size-xl: 24px;
+$indents-size-xxl: 32px;//
+$indents-size-xxxl: 40px;
+$indents-size-xxxxl: 48px;
+$indents-size-xxxxxl: 72px;
+
+$header-gray: #F0F2F3;
+$border-gray:#E5E5E5;
+$warning:#FF3029;
+$select-border:#FF4F49;
+$primary: #1774E9;
+$dark-gray-text:#7F8285;
+$table-row:#F2F2F2;
+$table-header:#B8BEC3;
+$commit-blue:#EBF6FD;
+$dark-gray: #434445;
+$preview:#F5F5F5;
+$gray:#999999;
+$load-border:#CCCCCC;
+$preview-text:#8694A2;
+$commit:#FAFBFC;
+$violet:#6B69C7;
+$insert:#19BC4D;
+$panel:#F1F8FF;
+$commit-font:#B8BEC3;
+$light-green:#E6FFED;
+$light-red:#FFEEF0;
+
+//$preview-border:#F5F5F5;
+
+html, body{
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+}

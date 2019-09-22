@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1.0">
+    <title>polyfill</title>
+</head>
+
+<body>
+    <div> </div>
+</body>
+<script type="text/javascript" src="./polyfill.js"></script>
+<script type="text/javascript">
+
+    var promise = new PPromise(function (resolve, rej) {
+        //   setTimeout(function () {
+        resolve(42)
+        //  }, 2000)
+
+    })
+
+    /*  promise
+        .then(function (value) {
+              return value + 1
+          })
+          .then(
+              function (value) {
+                  console.log(value) // 43
+                  return new PPromise(function (resolve) { resolve(137) })
+              }
+          )
+          .then(function (value) {
+              console.log(value) // 137
+              throw new Error()
+          })
+        .then(
+            function () { console.log('Будет проигнорировано') },
+            function () {
+                console.log('ошибка');
+                return 'ошибка обработана';
+            }
+        ).then(function (value) {
+            console.log(value, 23) // "ошибка обработана"
+        }).then(function (value) {
+            console.log(3453, 23) // "ошибка обработана"
+        })
+*/
+    /*  var promise = new PPromise(function (res, rej) {
+          //  setTimeout(function () {
+          res(51)
+          //   undefined.toString()
+          // throw new Error("error imitate");
+          //  }, 1000);
+      });*/
+    var promise2 = new PPromise(function (res, rej) {
+        res(73)
+    });
+
+    promise
+        .finally(function () {
+            console.log('finally 1')
+        })
+        .then(function (result) {
+            console.log(result, ' res all')
+        },
+            function (err) {
+                console.log(err, ' my err')
+            }
+        )
+        .finally(function () {
+            return new PPromise(function (res, rej) {
+                res(73)
+            });
+        })
+        .then(function (err) {
+            console.log(err, ' not err')
+        })
+
+    /*promise.then(function (res) {
+        console.log(res, ' data')
+        return res + 1;
+    }).then(function (data) {
+        console.log(data, ' data2')
+        return new PPromise(function (res, rej) {
+            // setTimeout(function () {
+            res(data + 1)
+            //  }, 1000);
+        }, 'test');
+    }).then(function (res) {
+        console.log(res, ' after promise ')
+    });*/
+    /*.catch(function(err){
+    console.log(err, 'err')
+})
+// var promise = new Promise.resolve(7);
+//console.log(promise.catch, 'catch init')
+/* promise.then(function (res) {
+     console.log(res, ' data')
+     return res + 1;
+ }).then(function (res) {
+     console.log(' data promise')
+     return new Promise(function (res, rej) {
+         // setTimeout(function () {
+         res(res + 1)
+         //  }, 1000);
+     });
+ }).then(function (res) {
+     console.log(res, ' data 2')
+ })*/
+
+    /*  promise.catch(function (res) {
+          console.log(res, 'error')
+      })*/
+   // console.log(typeof Promise !== "undefined", 'native typeof')
+</script>
+
+</html>

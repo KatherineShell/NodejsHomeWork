@@ -1,0 +1,19 @@
+.Icon-Folder::before{
+    content: url('../img/folder.svg');
+    width: 12px;
+    height: 20px;
+    margin-right: 8px;
+}
+
+.Icon-Brunch::before{
+    content: url('../img//branch.svg');
+    width: 8px;
+    height: 20px;
+    margin-right: 8px;
+}
+
+.Icon-Up{
+    background: url('../../img/small-up.svg') no-repeat center;
+    width: 8px;
+    height: 13px;
+}

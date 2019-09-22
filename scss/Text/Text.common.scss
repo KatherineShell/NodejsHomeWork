@@ -1,0 +1,80 @@
+@import '../main.common.scss'; 
+
+.Text_state_link{
+    color: $primary;
+}
+
+.Text_state_pointer{
+    cursor: pointer;
+}
+
+.Text_state_center{
+    text-align: center;
+}
+
+.Text_color_light{
+    color: $commit-font;;
+}
+
+.Text_color_delete{
+    color: $warning;
+}
+
+.Text_color_insert{
+    color: $insert;
+}
+
+.Text_color_gray{
+    color: $dark-gray-text;
+}
+
+.Text_color_dark-gray{
+    color: $dark-gray;
+}
+
+.Text_size_xs{
+    font-size: 13px;
+    line-height:$line-spacing-s;
+}
+
+.Text_size_ss{
+    font-size: 14px;
+    line-height:$line-spacing-s;
+}
+
+.Text_size_xsm{
+    font-size: 12px;
+    line-height:$line-spacing-m;
+}
+
+.Text_size_sm{
+    font-size: 14px;
+    line-height:$line-spacing-m;
+}
+
+.Text_size_mm{
+    font-size: 16px;
+    line-height: $line-spacing-m;
+}
+
+.Text_size_l{
+    font-size: 24px;
+    line-height:$line-spacing-xl;
+}
+
+.Text_size_xl{
+    font-size: 24px;
+    line-height: 28px;
+}
+
+.Text_state_bold{
+    font-weight: bold;
+}
+
+.Text_state_author{
+    display: inline-block;
+
+    &::first-letter{
+        color: $warning;
+    }
+}

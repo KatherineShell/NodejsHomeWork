@@ -1,0 +1,14 @@
+@import '../main.common.scss'; 
+
+.Section_space-h_xxl{
+    padding-left: $indents-size-sx;
+    padding-right: $indents-size-sx;
+}
+
+.Section_space-bottom_xxs{
+    padding-bottom: $indents-size-xxxs;
+}
+
+.Section_space-bottom_xxxs{
+    padding-bottom: 4px;
+}

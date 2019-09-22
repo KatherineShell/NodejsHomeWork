@@ -1,0 +1,9 @@
+@import '../main.common.scss'; 
+
+.Header-Item:first-child{
+    margin-left: 0;
+}
+
+.Header-Item:last-child{
+    margin-right: 0;
+}

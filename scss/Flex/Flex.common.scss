@@ -1,0 +1,28 @@
+.Flex{
+    display: flex;
+}
+
+.Flex_state_column{
+    display: flex;
+    flex-direction: column;
+}
+
+.Flex_state_End{
+    align-items: flex-end;
+}
+
+.Flex_state_center{
+    align-items: center;
+}
+
+.Flex_state_inline{
+    display: inline-flex;
+}
+
+.Flex-Item_senter{
+    align-self: center;
+}
+
+.Flex-between{
+    justify-content: space-between;
+}

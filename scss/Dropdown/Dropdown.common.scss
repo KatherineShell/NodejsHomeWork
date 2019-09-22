@@ -1,0 +1,7 @@
+@import '../main.common.scss'; 
+
+.Dropdown{
+    border-bottom: 3px solid $select-border;
+    margin-bottom: -1px;
+    cursor: pointer;
+}

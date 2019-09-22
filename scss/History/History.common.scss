@@ -1,0 +1,63 @@
+@import '../main.common.scss'; 
+
+.Histor-Title{
+    padding-bottom: 16px;
+}
+
+.History-Content{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 40px auto;
+    grid-template-rows: auto;
+    column-gap: 12px;
+    &:last-child .History-Line{
+        display: none;
+    }
+}
+
+.History-Line{
+    width: 2px;
+    height: auto;
+    background-color: $table-header;
+    margin: 0 auto;
+    padding: 2px 0;
+}
+
+.History-Chain{
+    display: grid;
+    grid-template-columns: 40px;
+    grid-template-rows: 40px auto;
+}
+
+.History-Message{
+    grid-column:1/4;
+    grid-row-start: 2;
+}
+
+.History-Data{
+    grid-column:1/4;
+    grid-row-start: 3;
+}
+
+.History-Icon{
+    background: url('../img/Vector.svg') no-repeat center;
+    background-color: $commit-blue;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.Code-Icon{
+    background: url('../img/code.svg') no-repeat center;
+    width: 16px;
+    height: 20px;
+    grid-column-start: 3;
+}
+
+.History-Details{
+    display: grid;
+    grid-template-columns: 3fr 1fr 17px;;
+    grid-template-rows: repeat(3, auto);
+    row-gap: 4px;
+    padding-bottom: 16px;
+}
