@@ -22,7 +22,6 @@ app.use(function (request, response, next) {
         response.send('There is no path');
         response.status(404);
     }
-
     next();
 });
 
@@ -53,7 +52,7 @@ app.post('/api/repos', urlencodedParser, (request, response) => {
 
 app.get("/api/repos/:repositoryId/commits/:commitHash/diff", function (request, response) {
     reposList = [];
-
+    console.log('git diff')
     let repositoryId = request.params['repositoryId'];
     let commitHash = request.params['commitHash'];
 
@@ -68,6 +67,7 @@ app.get("/api/repos/:repositoryId/commits/:commitHash/diff", function (request, 
 
 app.get("/api/repos/:repositoryId/commits/:commitHash/:pageSize(\\d+)?/:page(\\d+)?",
     function (request, response) {
+        console.log('get commits')
         reposList = [];
 
         let repositoryId = request.params['repositoryId'];
