@@ -1,12 +1,43 @@
-const { exec } = require('child_process');
-var fs = require('fs');
+const { spawn } = require('child_process');
+const _ = require('lodash');
+//var fs = require('fs');
 
-let repoContent = [];
-let findReposCounter = 0;
+//let repoContent = [];
+//let findReposCounter = 0;
 
 module.exports = function (response, commitHash, repoPath, searchDirrectory) {
+    const getTreeProcess = spawn('git',
+        ['ls-tree',/* '--name-only',*/
+            commitHash, searchDirrectory],
+        { cwd: repoPath });
+    let allData = '';
 
-    exec('git checkout ' + commitHash, { cwd: repoPath }, (err, out) => {
+    getTreeProcess.stdout.on('data', (data) => {
+        let str = `${data}`;
+
+        allData += str;
+        /* let dataArray = str.split('<step>');
+         let json = JSON.stringify({ commits: dataArray });
+ 
+         response.write(json);*/
+    });
+
+    getTreeProcess.stderr.on('data', (data) => {
+        console.error(`stderr: ${data}`);
+    });
+
+    getTreeProcess.on('error', function (err) {
+        response.send(err);
+        response.status(404);
+    });
+
+    getTreeProcess.on('close', function (code) {
+        console.log('child process exited with code ' + code);
+        let array = _.split(allData, '\n');
+        let jsonData = JSON.stringify({ files: array });
+        response.end(jsonData);
+    });
+    /*   exec('git checkout ' + commitHash, { cwd: repoPath }, (err) => {
         if (err) {
             response.send('No such folder or branch to checkout');
             response.status(404);
@@ -29,24 +60,25 @@ module.exports = function (response, commitHash, repoPath, searchDirrectory) {
                     });
                     let json = JSON.stringify({ folderContent: contentList });
 
-                    response.send(json);
+                //    response.send(json);
+                    response.json(json);
                 }
-            }
+            };
             
             createFirstFlor(searchDirrectory, callback);
-            /*  let finishCallback = () => {
+           let finishCallback = () => {
                   response.end("<div>" + showRepoContent(repoContent) + "</div>");
               };
   
               repoContent.push({ node: searchDirrectory, content: [] });
   
-              createRepoContent(searchDirrectory, repoContent[0].content, finishCallback, response);*/
+              createRepoContent(searchDirrectory, repoContent[0].content, finishCallback, response);
 
 
         }
-    });
-}
-
+    });*/
+};
+/*
 let showRepoContent = (contentData) => {
     let strContent = '';
 
@@ -61,8 +93,8 @@ let showRepoContent = (contentData) => {
 let createFirstFlor = (parentPath, callback) => {
 
     fs.readdir(parentPath, callback);
-}
-
+};*/
+/*
 let createRepoContent = (parentPath, content, callback, response) => {
     findReposCounter++;
 
@@ -89,3 +121,4 @@ let createRepoContent = (parentPath, content, callback, response) => {
         if (findReposCounter === 0 && callback) callback();
     });
 }
+*/

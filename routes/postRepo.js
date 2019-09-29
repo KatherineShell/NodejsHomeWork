@@ -1,7 +1,7 @@
 const { exec } = require('child_process');
 
 module.exports = function (response, url, repoPath) {
-    exec('git clone ' + url, { cwd: repoPath }, (err, out) => {
+    exec('git clone ' + url, { cwd: repoPath }, (err) => {
         if (err) {
             response.send('Wrong url to clone repository');
             response.status(404);
@@ -10,4 +10,4 @@ module.exports = function (response, url, repoPath) {
             response.send('Repository was downloaded.');
         }
     });
-}
+};
