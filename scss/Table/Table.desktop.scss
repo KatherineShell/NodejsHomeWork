@@ -17,7 +17,9 @@
 }
 
 .Table{
-
+    max-height: 300px;
+    overflow: auto;
+    
     .Table-Header{
        padding-top: 16px;
        padding-bottom: 8px;

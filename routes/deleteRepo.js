@@ -1,4 +1,4 @@
-const rimraf = require("rimraf");
+const rimraf = require('rimraf');
 
 module.exports = function (response, repoPath) {
  
@@ -8,6 +8,6 @@ module.exports = function (response, repoPath) {
             response.status(404);
         }
         
-        response.send("Repository seccessfylly deleted!");
+        response.send('Repository seccessfylly deleted!');
     });
-}
+};

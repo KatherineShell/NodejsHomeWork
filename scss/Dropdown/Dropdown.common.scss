@@ -4,4 +4,15 @@
     border-bottom: 3px solid $select-border;
     margin-bottom: -1px;
     cursor: pointer;
+    position: relative;
+
+    .MenuList{
+        display: none;
+    }
+}
+
+.Dropdown:hover{
+    .MenuList{
+        display: block;
+    } 
 }
