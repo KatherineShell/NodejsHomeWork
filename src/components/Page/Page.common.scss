@@ -1,0 +1,10 @@
+.Page{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.Page-Content{
+    flex-grow: 1;
+}

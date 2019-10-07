@@ -1,0 +1,13 @@
+@import '../../main.common.scss'; 
+
+.Section_border_top{
+    border-top: 1px solid $header-gray;
+}
+
+.Section_border_bottom{
+    border-bottom: 1px solid $border-gray;
+}
+
+.Section_space-top_xs{
+    padding-top: $indents-size-xs;
+}

@@ -2,6 +2,7 @@ const express = require('express');
 var fs = require('fs');
 const app = express();
 const bodyParser = require('body-parser');
+const path = require('path');
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 const getReposList = require('./routes/getReposList');
@@ -12,8 +13,9 @@ const deleteFile = require('./routes/deleteRepo');
 const getCommitDiff = require('./routes/getCommitDiff');
 const postRepo = require('./routes/postRepo');
 const getSymbols = require('./routes/getSymbols');
+const getBranches = require('./routes/getBranches');
 
-let pathToGit = process.argv[2];
+let pathToGit = process.env.TEST ? path.join(__dirname, '/../') : process.argv[2];
 let findReposCounter = 0;
 let reposList = [];
 
@@ -24,6 +26,7 @@ app.use('/views', express.static(__dirname + '/views'));
 
 app.use(function (request, response, next) {
     if (!pathToGit) {
+        console.log('There is no path');
         response.send('There is no path');
         response.status(404);
     }
@@ -31,14 +34,31 @@ app.use(function (request, response, next) {
 });
 
 app.get('/api/repos', function (request, response) {
+    response.set('Content-Type', 'application/json');
     reposList = [];
-
+    console.log('get repos');
     findRepos(pathToGit, () => getReposList(response, reposList), response);
+});
+
+app.get('/api/branches/:repositoryId', function (request, response) {
+    console.log('branches');
+    response.set('Content-Type', 'application/json');
+
+    reposList = [];
+    let repositoryId = request.params['repositoryId'];
+
+    let searchReposEnded = () => {
+
+        hocValidation(response, repositoryId,
+            (repoPath) => getBranches(response, repoPath));
+    };
+
+    findRepos(pathToGit, searchReposEnded, response);
 });
 
 app.delete('/api/repos/:repositoryId', (request, response) => {
     reposList = [];
-
+    console.log('delete repo');
     let repositoryId = request.params['repositoryId'];
     let searchReposEnded = () => {
 
@@ -50,13 +70,15 @@ app.delete('/api/repos/:repositoryId', (request, response) => {
 });
 
 app.post('/api/repos', urlencodedParser, (request, response) => {
+    console.log('git clone');
     if (!request.body) return response.sendStatus(400);
-
     postRepo(response, request.body.url, pathToGit);
 });
 
 app.get('/api/repos/:repositoryId/commits/:commitHash/diff', function (request, response) {
     reposList = [];
+    response.set('Content-Type', 'application/json');
+
     console.log('git diff');
     let repositoryId = request.params['repositoryId'];
     let commitHash = request.params['commitHash'];
@@ -74,6 +96,8 @@ app.get('/api/repos/:repositoryId/commits/:commitHash/:pageSize(\\d+)?/:page(\\d
     function (request, response) {
         console.log('get commits');
         reposList = [];
+        response.set('Content-Type', 'application/json');
+
 
         let repositoryId = request.params['repositoryId'];
         let commitHash = request.params['commitHash'];
@@ -88,30 +112,35 @@ app.get('/api/repos/:repositoryId/commits/:commitHash/:pageSize(\\d+)?/:page(\\d
 
         findRepos(pathToGit, searchReposEnded, response);
     });
+    
+app.get(['/api/repos/:repositoryId',
+    '/api/repos/:repositoryId/tree/:commitHash/:path([^/]*)?'], function (request, response) {
+        response.set('Content-Type', 'application/json');
 
-app.get('/api/repos/:repositoryId:tree((/tree)?)/:commitHash?/:path(.*)?', function (request, response) {
-    reposList = [];
-    console.log('repo content tree');
-    let repositoryId = request.params['repositoryId'];
-    let commitHash = request.params['commitHash'] || 'master';
-    let path = request.params['path'];
+        reposList = [];
+        console.log('repo content tree');
+        let repositoryId = request.params['repositoryId'];
+        let commitHash = request.params['commitHash'] || 'master';
+        let path = request.params['path'];
 
-    let searchReposEnded = () => {
+        let searchReposEnded = () => {
 
-        hocValidation(response, repositoryId,
-            (repoPath) => {
-                let searchDirrectory = path ? repoPath + '/' + path : repoPath;
+            hocValidation(response, repositoryId,
+                (repoPath) => {
+                    let searchDirrectory = path ? repoPath + '/' + path : repoPath;
 
-                getRepoContent(response, commitHash, repoPath, searchDirrectory);
-            });
-    };
+                    getRepoContent(response, commitHash, repoPath, searchDirrectory);
+                });
+        };
 
-    findRepos(pathToGit, searchReposEnded, response);
-});
+        findRepos(pathToGit, searchReposEnded, response);
+    });
 
 app.get('/api/repos/:repositoryId/blob/:commitHash/:pathToFile([^/]*)', function (request, response) {
     reposList = [];
+    response.set('Content-Type', 'application/json');
 
+    console.log('get blob');
     let repositoryId = request.params['repositoryId'];
     let commitHash = request.params['commitHash'];
     let pathToFile = request.params['pathToFile'];
@@ -126,8 +155,10 @@ app.get('/api/repos/:repositoryId/blob/:commitHash/:pathToFile([^/]*)', function
 });
 
 app.get('/api/repos/:repositoryId/allSymbols/:commitHash', function (request, response) {
-    reposList = [];
+    response.set('Content-Type', 'application/json');
 
+    reposList = [];
+    console.log('allSymbols');
     let repositoryId = request.params['repositoryId'];
     let commitHash = request.params['commitHash'];
 
@@ -138,6 +169,11 @@ app.get('/api/repos/:repositoryId/allSymbols/:commitHash', function (request, re
     };
 
     findRepos(pathToGit, searchReposEnded, response);
+});
+
+app.use(function (request, response) {
+    console.log('sendFile index');
+    response.sendFile(__dirname + '/views/index.html');
 });
 
 let hocValidation = (response, repositoryId, callback) => {
@@ -158,13 +194,14 @@ let hocValidation = (response, repositoryId, callback) => {
     }
 };
 
-app.listen(3000);
+app.listen(3000, () => { console.log('server started'); });
 
 let findRepos = (parentPath, callback, response) => {
     findReposCounter++;
 
     fs.readdir(parentPath, function (err, list) {
         if (err) {
+            console.log('No repository.');
             response.send('No repository.');
             response.status(404);
         }
@@ -196,5 +233,6 @@ let repoFolder = (repositoryId) => {
     });
 };
 
-//git for-each-ref --sort=-committerdate --format='%(refname)%09%(committerdate)'  refs/heads/
-//get branches
+module.exports = app;
+
+//git for-each-ref --sort=-committerdate --format='%(refname:short)@%(committerdate:relative)@%(committername)@%(objectname:short)'  refs/heads/

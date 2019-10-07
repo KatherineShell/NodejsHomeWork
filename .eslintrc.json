@@ -25,7 +25,8 @@
             "single"
         ],
         "no-unused-vars": "warn",
-        "no-case-declarations" :"off"
+        "no-case-declarations" :"off",
+        "jsx-quotes":"warn"
         //    "space-before-blocks":"warn"
     }
 }

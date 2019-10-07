@@ -22,11 +22,11 @@ module.exports = function (response, commitHash, repoPath) {
             createRepoContent(repoPath, finishCallback, response);
         }
     });
-}
+};
 
-let read = (path, callback) => {
+let read = (path, callback, response) => {
     fileCounter++;
-    fs.readFile(path, "utf8",
+    fs.readFile(path, 'utf8',
         (error, data) => {
             fileCounter--;
 
@@ -53,7 +53,7 @@ let read = (path, callback) => {
 
             if (fileCounter === 0 && callback) callback();
         });
-}
+};
 
 let createRepoContent = (parentPath, callback, response) => {
 
@@ -72,10 +72,10 @@ let createRepoContent = (parentPath, callback, response) => {
                         createRepoContent(itemPath, callback, response);
                     }
                     else {
-                        read(itemPath, callback);
+                        read(itemPath, callback, response);
                     }
                 }
             }
         }
     });
-}
+};

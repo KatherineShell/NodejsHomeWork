@@ -1,11 +1,11 @@
 const { spawn } = require('child_process');
 
 module.exports = function (response, commitHash, repoPath, pageSize, page) {
-
+    let allData = '';
     let logOptions = [
         'log',
         commitHash,
-        '--pretty=format: hash: %H message: < %s > Date: %ad <step>',
+        '--pretty=format: hash: %H message: < %s > Date: %ad',
         '--date=format:%Y-%m-%d %H:%M:%S'];
 
     if (pageSize && page) {
@@ -24,10 +24,8 @@ module.exports = function (response, commitHash, repoPath, pageSize, page) {
 
     getCommitsProcess.stdout.on('data', (data) => {
         let str = `${data}`;
-        let dataArray = str.split('<step>');
-        let json = JSON.stringify({ commits: dataArray });
 
-        response.write(json);
+        allData += str;
     });
 
     getCommitsProcess.stderr.on('data', (data) => {
@@ -41,6 +39,9 @@ module.exports = function (response, commitHash, repoPath, pageSize, page) {
 
     getCommitsProcess.on('close', function (code) {
         console.log('child process exited with code ' + code);
-        response.end('finish');
+        let dataArray = allData.split('\n');
+        let json = JSON.stringify({ commits: dataArray });
+
+        response.end(json);
     });
 };

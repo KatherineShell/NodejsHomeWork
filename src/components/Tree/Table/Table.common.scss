@@ -1,0 +1,16 @@
+@import '../../../main.common.scss'; 
+
+.Table{
+    width: 100%;
+}
+
+.Table-Row{
+    border-bottom: solid 1px $table-row;
+    display: grid;
+    padding-bottom: 12px;
+}
+
+.Table-Row-center{
+    display: flex;
+    justify-content: center;
+}

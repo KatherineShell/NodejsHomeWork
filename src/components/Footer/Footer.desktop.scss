@@ -1,0 +1,14 @@
+@import '../../main.common.scss'; 
+
+.Footer{
+    justify-content: space-between;
+}
+
+@media (max-width:600px) and (min-width:$mobile-point){
+    .Footer-Address{
+        width: 50%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+}

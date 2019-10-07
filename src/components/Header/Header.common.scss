@@ -1,4 +1,9 @@
-@import '../main.common.scss'; 
+@import '../../main.common.scss'; 
+
+.Header{
+    display: flex;
+    align-items: flex-end;
+}
 
 .Header-Item:first-child{
     margin-left: 0;

@@ -1,0 +1,23 @@
+.Path{
+    display: flex;
+}
+
+.Path-Route{
+    &::after{
+        content: "/";
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    &:first-child{
+        padding-left: 0;
+    }
+
+    &:last-child{
+        padding-right: 0;
+
+        &::after{
+            content: "";
+        }
+    }
+}

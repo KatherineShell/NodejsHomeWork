@@ -1,0 +1,15 @@
+.Dropdowm-Arrow::after{
+    margin-left: 6px;
+    height: 6px;
+    width: 10px;
+    background-position: center;
+    content: '';
+    position: absolute;
+    top: 5px;
+    right: -20px;
+    background: url('../img/arrow-down.svg') 100% 100% no-repeat;
+}
+
+.Dropdowm-Arrow_up::after{
+   transform: rotate(180deg);
+}

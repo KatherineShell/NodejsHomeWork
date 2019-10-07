@@ -1,0 +1,74 @@
+@import '../../../main.common.scss'; 
+
+.Preview{
+    margin-top: 16px;
+}
+
+.Preview-Title{
+    display: flex;
+    align-items: center;
+}
+
+.Preview-Header{
+    border:1px solid $border-gray;
+    background-color: $preview;
+    border-radius: 4px 4px 0 0;
+    padding: 8px 16px 6px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Preview_Icon{
+    width: 9px;
+    height: 16px;
+    background: url('../img//file.svg') no-repeat center;
+    margin-right: 8px;
+}
+
+.Preview-Size{
+    color: $gray;
+    padding-left: 2px;
+}
+
+.Preview-Download{
+    cursor: pointer;
+    border-radius: 3px;
+    border: 1px solid $load-border;
+    height: 20px;
+    width: 14px;
+    background: url('../img/download.svg') no-repeat center;
+    padding-top: 8px ;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.Preview-Content{
+    padding: 6px 0;
+    border:1px solid $border-gray;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+
+    & ol {
+        list-style-type: none;
+        counter-reset: num;
+        padding: 0;
+        margin: 0;
+    }
+    & li{
+        color: $preview-text;
+    }
+    
+    & li::before {
+        content: counter(num);
+        counter-increment: num;
+        display: inline-block;
+        font-style: italic;
+        width: 40px;
+        margin-right: 32px;
+        text-align: right;
+        color: $load-border;
+        font-style: normal;
+        font-weight: normal;
+    }
+}

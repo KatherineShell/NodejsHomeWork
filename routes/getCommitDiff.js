@@ -8,7 +8,7 @@ module.exports = function (response, repoPath, commitHash) {
 
     getCommitsProcess.stdout.on('data', (data) => {
         let str = `${data}`;
-        let json = JSON.stringify({ diff: str.replace('"', "") });
+        let json = JSON.stringify({ diff: str.replace('"', '') });
         response.write(json);
     });
 
@@ -21,10 +21,10 @@ module.exports = function (response, repoPath, commitHash) {
     getCommitsProcess.on('error', function (err) {
         response.send(err);
         response.status(404);
-    })
+    });
 
     getCommitsProcess.on('close', function (code) {
         console.log('child process exited with code ' + code);
         response.end('finish');
     });
-}
+};

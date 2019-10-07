@@ -1,4 +1,4 @@
-@import '../main.common.scss'; 
+@import '../../main.common.scss'; 
 
 .Footer{
     box-sizing: border-box;
@@ -6,8 +6,6 @@
     align-items: center;
     color: $dark-gray-text;
     width: 100%;
-    position: fixed;
-    bottom: 0;
 }
 
 .Footer_space-h_l{
@@ -29,10 +27,4 @@
 
 .Footer-Text{
     box-sizing: border-box;
-    font-size: 13px;
-    line-height: $line-spacing-s;
-}
-
-.Footer_space-top{
-
 }

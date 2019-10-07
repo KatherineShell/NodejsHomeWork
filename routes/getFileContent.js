@@ -1,23 +1,33 @@
-const fs = require('fs');
-const { exec } = require('child_process');
+const { spawn } = require('child_process');
 
 module.exports = function (response, repoPath, commitHash, pathToFile) {
-    exec('git checkout ' + commitHash, { cwd: repoPath }, (err, out) => {
-        if (err) {
-            response.status(404);
-            response.end('No such folder or branch to checkout');
-        }
-        else {
-            fs.readFile(repoPath + '/' + pathToFile, "binary",
-                (error, data) => {
-                    if (error) {
-                        response.status(404);
-                        response.end('No such file');
-                    }
-                    let json = JSON.stringify({ fileData: data });
+    
+    let allData = '';
+    const getCommitsProcess = spawn('git',
+        ['show', commitHash + ':' + pathToFile],
+        { cwd: repoPath });
+        
+    getCommitsProcess.stdout.on('data', (data) => {
+        let str = `${data}`;
 
-                    response.send(json);
-                });
-        }
+        allData += str;
     });
-}
+
+    getCommitsProcess.stderr.on('data', (data) => {
+        console.error(`stderr: ${data}`);
+        response.send('Error getting Data');
+        response.status(404);
+    });
+
+    getCommitsProcess.on('error', function (err) {
+        response.send(err);
+        response.status(404);
+    });
+
+    getCommitsProcess.on('close', function (code) {
+        console.log('child process exited with code ' + code);
+
+        let jsonData = JSON.stringify({ fileData: allData });
+        response.send(jsonData);
+    });
+};
