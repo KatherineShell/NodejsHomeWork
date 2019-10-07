@@ -7,27 +7,27 @@ module.exports = {
            }
        },*/
     //   pageLoadTimeout: 10000,
-    testTimeout: 10000,
+    //   testTimeout: 10000,
     browsers: {
         chrome: {
             desiredCapabilities: {
                 browserName: 'chrome'
             }
         }
+    },
+    plugins: {
+        'html-reporter/hermione': {
+            enabled: true,
+            path: 'my/hermione-reports',
+            defaultView: 'all',
+            baseHost: 'test.com',
+         /*   errorPatterns: [
+                'Parameter .* must be a string',
+                {
+                    name: 'Cannot read property of undefined',
+                    pattern: 'Cannot read property .* of undefined'
+                }
+            ]*/
+        }
     }
-    /*  plugins: {
-          'html-reporter/hermione': {
-              enabled: true,
-              path: 'my/hermione-reports',
-              defaultView: 'all',
-              baseHost: 'test.com',
-              errorPatterns: [
-                  'Parameter .* must be a string',
-                  {
-                      name: 'Cannot read property of undefined',
-                      pattern: 'Cannot read property .* of undefined'
-                  }
-              ]
-          }
-      }*/
 };

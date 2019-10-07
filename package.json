@@ -10,7 +10,7 @@
     "scss": "gulp scss",
     "scss-watch": "gulp watch",
     "server": "node index.js C:\\Projects",
-    "hermione": "./node_modules/.bin/hermione ./hermione/simple.hermione.js"
+    "hermione": "./node_modules/.bin/hermione gui ./hermione/simple.hermione.js"
   },
   "author": "Katherine Shelopukho",
   "license": "ISC",
