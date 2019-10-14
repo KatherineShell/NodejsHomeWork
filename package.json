@@ -9,12 +9,16 @@
     "build": "webpack --mode production",
     "scss": "gulp scss",
     "scss-watch": "gulp watch",
-    "server": "node index.js C:\\Projects",
+    "server": "node dist/server.bundle.js C:\\Projects",
     "hermione": "./node_modules/.bin/hermione gui ./hermione/simple.hermione.js"
   },
   "author": "Katherine Shelopukho",
   "license": "ISC",
   "dependencies": {
+    "@types/lodash": "^4.14.142",
+    "@types/react-redux": "^7.1.4",
+    "@types/react-router-dom": "^5.1.0",
+    "@types/showdown": "^1.9.3",
     "axios": "^0.19.0",
     "body-parser": "^1.19.0",
     "chai": "^4.2.0",
@@ -33,12 +37,18 @@
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.4",
     "rimraf": "^3.0.0",
-    "showdown": "^1.9.0"
+    "showdown": "^1.9.0",
+    "ts-loader": "^6.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
+    "@types/express": "^4.17.1",
+    "@types/node": "^12.7.12",
+    "@types/react": "^16.9.5",
+    "@types/react-dom": "^16.9.1",
+    "@types/rimraf": "^2.0.2",
     "babel-loader": "^8.0.6",
     "eslint": "^6.4.0",
     "eslint-config-standard": "^14.1.0",
@@ -47,6 +57,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "html-reporter": "^4.13.1",
+    "typescript": "^3.6.3",
     "webpack": "^4.41.0",
     "webpack-cli": "^3.3.9"
   }

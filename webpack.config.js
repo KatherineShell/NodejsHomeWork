@@ -1,9 +1,19 @@
 module.exports = {
-    entry: ['./src/index.js'],
+    entry: {
+        client: './src/index.js',
+        server: './index.ts'
+    },
     output: {
         path: __dirname + '/dist',
-        filename: 'bundle.js',
+        filename: '[name].bundle.js',
         publicPath: '/'
+    },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js', 'jsx']
+    },
+    target: 'node',
+    node: {
+        __dirname: false
     },
     module: {
         rules: [
@@ -12,7 +22,12 @@ module.exports = {
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader'
-                }               
+                }
+            },
+            {
+                test: /\.(tsx|ts)$/,
+                use: 'ts-loader',
+                exclude: /node_modules/
             }
         ]
     }
